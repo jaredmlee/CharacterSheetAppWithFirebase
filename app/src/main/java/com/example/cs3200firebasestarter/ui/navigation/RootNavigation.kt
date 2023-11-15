@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.*
+import androidx.navigation.navArgument
 import com.example.cs3200firebasestarter.ui.repositories.UserRepository
 import com.example.cs3200firebasestarter.ui.screens.*
 import kotlinx.coroutines.launch
@@ -75,9 +76,10 @@ fun RootNavigation() {
                     )
                 }
             },
+            //currentDestination?.hierarchy?.none { it.route == Routes.launchNavigation.route || it.route == Routes.splashScreen.route } == true
             floatingActionButton = {
-                if (currentDestination?.hierarchy?.none { it.route == Routes.launchNavigation.route || it.route == Routes.splashScreen.route } == true){
-                    FloatingActionButton(onClick = {}) {
+                if (currentDestination?.hierarchy?.none {it.route == Routes.home.route} == false){
+                    FloatingActionButton(onClick = {navController.navigate("editcharacter")}) {
                         Icon(imageVector = Icons.Default.Add, contentDescription = "Add Item")
                     }
                 }
@@ -96,7 +98,12 @@ fun RootNavigation() {
                     composable(route = Routes.signUp.route) { SignUpScreen(navController) }
                 }
                 navigation(route = Routes.appNavigation.route, startDestination = Routes.home.route) {
+                    composable(
+                        route = "editcharacter?id={id}",
+                        arguments = listOf(navArgument("id") {defaultValue = "new"})
+                    ){ navBackStackEntry -> NewCharacterScreen(navController, navBackStackEntry.arguments?.get("id").toString())}
                     composable(route = Routes.home.route) { HomeScreen(navController) }
+
                 }
                 composable(route = Routes.splashScreen.route) { SplashScreen(navController) }
             }

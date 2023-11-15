@@ -38,7 +38,7 @@ fun SplashScreen(navHostController: NavHostController) {
         verticalArrangement = Arrangement.SpaceAround
     ) {
         Text(
-            text = "Firebase Todos",
+            text = "Tabletop RPG Character Creator",
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center

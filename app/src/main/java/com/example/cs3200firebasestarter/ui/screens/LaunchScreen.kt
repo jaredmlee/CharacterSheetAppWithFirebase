@@ -1,13 +1,18 @@
 package com.example.cs3200firebasestarter.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.cs3200firebasestarter.ui.navigation.Routes
+import com.example.cs3200firebasestarter.ui.viewmodels.HomeViewModel
 
 @Composable
 fun LaunchScreen(navHostController: NavHostController) {
